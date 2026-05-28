@@ -651,16 +651,6 @@ flowchart LR
 
 ---
 
-## 📚 Resources
-
-- [Linux Foundation](https://www.linuxfoundation.org)
-- [Bash Beginners Guide](https://tldp.org/LDP/Bash-Beginners-Guide/html/)
-- [OverTheWire Bandit](https://overthewire.org/wargames/bandit/)
-- [TryHackMe Linux Fundamentals](https://tryhackme.com)
-- [Hack The Box Academy](https://academy.hackthebox.com)
-- [GNU Bash Manual](https://www.gnu.org/software/bash/manual/bash.html)
-
----
 
 ## ⚠️ Ethical Reminder
 
@@ -683,9 +673,204 @@ Penetration testing skills must be used legally and ethically.
 
 ---
 
-> 💡 *"The quieter you become, the more you are able to hear."* — Kali Linux motto
+# 📁 File Management
+
+## Copy
+```bash
+cp file.txt /home/kali/
+cp -r dir1/ dir2/
+cp -i file.txt /tmp/
+cp -v file.txt backup/
+```
+# -r → recursive
+# -i → interactive (safe)
+# -v → verbose
+
+Example:
+```bash
+cp /etc/passwd passwd.bak
+```
 
 ---
 
-**Last updated:** 2026-05-19  
-**Prepared by:** Youhana Emad — Junior Penetration Tester
+## Move / Rename
+```bash
+mv file.txt /home/kali/
+mv file.txt new.txt
+mv *.log logs/
+mv -i file.txt /tmp/
+```
+
+---
+
+## Remove
+```bash
+rm file.txt
+rm -i file.txt
+rm -r folder/
+rm -rf folder/
+rm *.tmp
+```
+⚠️ NEVER:
+```bash
+rm -rf /home/kali/test
+```
+
+---
+
+# 🔎 Searching
+
+## find
+```bash
+find / -name file.txt
+find / -type f -name "*.txt"
+find / -type d -name test
+find / -perm 777
+find / -size +1M
+find / -empty
+```
+
+## execute with find
+```bash
+find / -name "rockyou.txt" -exec mv {} /tmp/pass.txt \;
+find /tmp -name "*.tmp" -delete
+```
+
+## locate
+```bash
+locate passwd
+updatedb
+```
+
+---
+
+# 🔎 grep (Advanced)
+```bash
+grep "root" file.txt
+grep -i "password" file.txt
+grep -r "password" .
+grep -n "error" file.log
+grep -v "root" file.txt
+```
+
+Example:
+```bash
+cat file.txt | grep "admin"
+```
+
+---
+
+# 🔤 Regular Expressions (Regex Basics)
+
+| Pattern | Meaning |
+|--------|--------|
+| `\w` | letters or numbers |
+| `\d` | digits [0-9] |
+| `\s` | spaces |
+| `\W` | not letters or numbers |
+| `\D` | not digits |
+| `\S` | not spaces |
+| `.` | any character |
+| `^` | start of line |
+| `$` | end of line |
+| `\?` | literal ? |
+| `\!` | literal ! |
+| `\.` | literal . |
+| `\$` | literal $ |
+| `\d{2}` | exactly 2 digits |
+| `\s{3}` | exactly 3 spaces |
+
+Example:
+```bash
+touch file.txt
+echo "Hello612 we are here" >> file.txt
+cat file.txt | grep -E "\w{5}[0-9]{3}"
+```
+
+---
+
+# 🔐 Permissions (Advanced)
+
+## chmod
+```bash
+chmod 777 file.txt
+chmod +x script.sh
+chmod u+x file.sh
+```
+
+## chown
+```bash
+chown user:group file.txt
+```
+
+## Special Permissions
+
+### SUID
+```bash
+chmod u+s file
+```
+
+### SGID
+```bash
+chmod g+s directory
+```
+
+### Sticky Bit
+```bash
+chmod +t directory
+```
+
+---
+
+# 📖 File Viewing
+```bash
+cat file.txt
+less file.txt
+more file.txt
+head file.txt
+tail file.txt
+tail -f log.txt
+nl file.txt
+```
+
+---
+
+# ✏️ Editors
+```bash
+nano file.txt
+vim file.txt
+```
+
+---
+
+# 🗜️ Compression
+```bash
+zip files.zip a.txt b.txt
+unzip files.zip
+
+tar -czf archive.tar.gz folder/
+tar -xvf archive.tar.gz
+```
+
+---
+
+# 📚 Documentation
+```bash
+man ls
+apropos scan
+whatis nmap
+info bash
+sudo mandb
+```
+
+---
+## 📚 Resources
+
+- [Linux Foundation](https://www.linuxfoundation.org)
+- [Bash Beginners Guide](https://tldp.org/LDP/Bash-Beginners-Guide/html/)
+- [OverTheWire Bandit](https://overthewire.org/wargames/bandit/)
+- [TryHackMe Linux Fundamentals](https://tryhackme.com)
+- [Hack The Box Academy](https://academy.hackthebox.com)
+- [GNU Bash Manual](https://www.gnu.org/software/bash/manual/bash.html)
+
+---
